@@ -69,15 +69,19 @@ function App() {
             {/* RETRY BUTTON */}
             <button
               onClick={() => {
-                window.open(
-                  "chrome://settings/content/siteDetails?site=https://batteryhelth.vercel.app",
-                  "_blank"
-                );
+                window.open("chrome://settings/content", "_blank");
               }}
               className="bg-accent hover:bg-accent-glow text-bg-dark font-bold py-2 px-6 rounded-full transition-all mt-6 shadow-lg"
             >
               Retry Connection
             </button>
+            <div className="text-xs text-text-secondary mt-2">
+              Chrome does not allow opening permission popups automatically.
+              After clicking Retry, scroll to
+              <span className="text-text-primary font-medium">“Local Network Access”</span>
+              and enable it manually.
+            </div>
+
           </div>
 
           {/* RIGHT SECTION — TROUBLESHOOTING */}
@@ -240,9 +244,8 @@ function App() {
                 <div
                   className="h-full bg-accent shadow-[0_0_10px_var(--accent-color)]"
                   style={{
-                    width: `${
-                      (battery.maxCapacity / battery.designedCapacity) * 100
-                    }%`,
+                    width: `${(battery.maxCapacity / battery.designedCapacity) * 100
+                      }%`,
                   }}
                 />
               </div>
@@ -267,23 +270,23 @@ function App() {
                     {battery.isCharging
                       ? "⚡"
                       : battery.percent < 20
-                      ? "⚠️"
-                      : "💡"}
+                        ? "⚠️"
+                        : "💡"}
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-text-primary mb-1">
                       {battery.isCharging
                         ? "Charging in Progress"
                         : battery.percent < 20
-                        ? "Low Battery Warning"
-                        : "Battery Status Normal"}
+                          ? "Low Battery Warning"
+                          : "Battery Status Normal"}
                     </h4>
                     <p className="text-text-secondary text-sm leading-relaxed">
                       {battery.isCharging
                         ? "Your device is charging. For long-term battery health, unplug around 80% unless needed."
                         : battery.percent < 20
-                        ? "Battery is critically low. Plug in now to avoid shutdown."
-                        : "Battery is healthy. Keep charge between 20%–80% for best lifespan."}
+                          ? "Battery is critically low. Plug in now to avoid shutdown."
+                          : "Battery is healthy. Keep charge between 20%–80% for best lifespan."}
                     </p>
                   </div>
                 </div>
