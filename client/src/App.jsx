@@ -57,7 +57,7 @@ function App() {
 
           <ul className="list-disc pl-5 space-y-2 leading-relaxed">
             <li>Please enable <span className="font-medium text-text-primary">"Local Network Access"</span> to allow battery data scanning.</li>
-            <li>We ensure **zero risk** — the app does not harm your system.</li>
+            <li>We ensure Zero Harm — the app does not harm your system.</li>
             <li>The tool only analyzes your battery data to offer accurate health suggestions.</li>
           </ul>
 
@@ -71,8 +71,8 @@ function App() {
 
             <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
               <FiMail className="text-accent" />
-              <a href="mailto:mrpatraofficial@gmail.com" className="hover:underline">
-                mrpatraofficial@gmail.com
+              <a href="mailto:mrpatra.web@gmail.com" className="hover:underline">
+                mrpatra.web@gmail.com
               </a>
             </div>
 
