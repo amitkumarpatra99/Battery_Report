@@ -52,10 +52,11 @@ function App() {
         <div className="text-left bg-black/30 p-4 rounded-lg mb-6 text-sm text-text-secondary">
           <p className="font-semibold text-text-primary mb-2">Troubleshooting:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Ensure the backend is running locally (`npm start`).</li>
-            <li>Check if MongoDB is active.</li>
-            <li>If on Vercel/Netlify, this app <strong>requires</strong> a local backend to read battery data.</li>
-            <li>Allow "Local Network Access" if prompted.</li>
+            <li>Allow "Local Network Access" To Check Battery Data</li>
+            <li>We Promise Not To Harm Your System</li>
+            <li>It Just Checks Your Battery Data and Give suggestions for battery health</li>
+            <li>If any Query, Please Contact Us</li>
+            <li>For More Information, Please Visit Our Website <a href="https://mrpatra.vercel.app/">Mr Patra</a></li>
           </ul>
         </div>
 
