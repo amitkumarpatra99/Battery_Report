@@ -8,17 +8,17 @@ const BatteryGauge = ({ percent, isCharging }) => {
     const strokeDashoffset = circumference - (percent / 100) * circumference;
 
     const getColor = (p) => {
-        if (p > 50) return 'var(--success)'; // Tailwind config maps these, but dynamic colors in JS might need inline styles or class mapping
-        if (p > 20) return 'var(--warning)';
-        return 'var(--danger)';
+        if (p > 50) return '#4ade80'; // success
+        if (p > 20) return '#fbbf24'; // warning
+        return '#f87171'; // danger
     };
 
     const color = getColor(percent);
 
     return (
-        <div className="glass-panel p-10 flex flex-col items-center justify-center relative">
-            <h3 className="m-0 mb-5 text-text-secondary font-medium">Current Charge</h3>
-            <div className="relative w-full max-w-[200px] aspect-square">
+        <div className="glass-panel p-6 flex flex-col items-center justify-center relative">
+            <h3 className="m-0 mb-4 text-text-secondary font-medium">Current Charge</h3>
+            <div className="relative w-48 h-48">
                 <svg
                     viewBox={`0 0 ${radius * 2} ${radius * 2}`}
                     className="transform -rotate-90 overflow-visible w-full h-full"
@@ -47,13 +47,13 @@ const BatteryGauge = ({ percent, isCharging }) => {
                         cy={radius}
                     />
                 </svg>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                    <div className="text-4xl font-bold text-text-primary">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">
+                    <div className="text-3xl font-bold text-text-primary">
                         {percent}%
                     </div>
                     {isCharging && (
-                        <div className="text-warning text-2xl mt-1 animate-pulse">
-                            ⚡ Charging
+                        <div className="text-warning text-lg mt-1 animate-pulse font-medium">
+                            ⚡
                         </div>
                     )}
                 </div>
