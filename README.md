@@ -2,7 +2,7 @@
 
 A modern, full-stack MERN application that provides real-time telemetry and historical data for your Windows laptop's battery health. Built with a beautiful, dark-themed UI using Tailwind CSS and Glassmorphism design principles.
 
-![Desktop Preview](assets/desktop-preview.png)
+
 
 ## ✨ Features
 
@@ -79,11 +79,7 @@ Windows Battery Status/
 └── README.md               # Project Documentation
 ```
 
-## 📱 Mobile View
 
-The application adapts seamlessly to smaller screens.
-
-![Mobile Preview](assets/mobile-preview.png)
 
 ## 🔧 Troubleshooting
 
