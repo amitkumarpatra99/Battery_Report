@@ -52,27 +52,75 @@ function App() {
           Could not reach the local backend server.
         </p>
 
+{/* EDITED */}
         <div className="text-left bg-black/30 p-5 rounded-xl mb-6 text-sm text-text-secondary backdrop-blur-md border border-white/10 shadow-lg">
-          <p className="font-semibold text-text-primary mb-3 text-base">Troubleshooting & Support</p>
+          <p className="font-semibold text-text-primary mb-3 text-base">
+            Troubleshooting & Support
+          </p>
 
           <ul className="list-disc pl-5 space-y-2 leading-relaxed">
-            <li>Please enable <span className="font-medium text-text-primary">"Local Network Access"</span> to allow battery data scanning.</li>
-            <li>We ensure Zero Harm — the app does not harm your system.</li>
-            <li>The tool only analyzes your battery data to offer accurate health suggestions.</li>
+            <li>
+              Please enable{" "}
+              <span className="font-medium text-text-primary">
+                "Local Network Access"
+              </span>{" "}
+              to allow battery data scanning.
+            </li>
+            <li>
+              We ensure{" "}
+              <span className="font-semibold text-text-primary">zero risk</span> — the app
+              does not harm your system.
+            </li>
+            <li>
+              The tool only analyzes your battery data to offer accurate health
+              suggestions.
+            </li>
           </ul>
 
+          {/* --- NEW SECTION: Local Network Access Guide --- */}
+          <div className="mt-4 p-4 bg-black/20 rounded-lg border border-white/10">
+            <p className="font-semibold text-text-primary mb-2">
+              How to Enable Local Network Access:
+            </p>
+            <ol className="list-decimal pl-5 space-y-1 leading-relaxed">
+              <li>
+                Click the{" "}
+                <span className="text-text-primary font-medium">🔒 lock icon</span> in
+                your browser’s address bar.
+              </li>
+              <li>Select **Site settings** or **Permissions**.</li>
+              <li>
+                Turn on{" "}
+                <span className="font-medium text-text-primary">
+                  "Local Network Access"
+                </span>{" "}
+                as shown in the image above.
+              </li>
+            </ol>
+            <p className="mt-2 text-text-secondary text-xs">
+              This permission allows the browser to read system-level battery data
+              safely.
+            </p>
+          </div>
+
+          {/* --- Contact section --- */}
           <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
             <p className="font-semibold text-text-primary">Contact Us:</p>
 
             <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
               <FiPhone className="text-accent" />
-              <a href="tel:8144129955" className="hover:underline">+91 81441 29955</a>
+              <a href="tel:8144129955" className="hover:underline">
+                +91 81441 29955
+              </a>
             </div>
 
             <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
               <FiMail className="text-accent" />
-              <a href="mailto:mrpatra.web@gmail.com" className="hover:underline">
-                mrpatra.web@gmail.com
+              <a
+                href="mailto:mrpatraofficial@gmail.com"
+                className="hover:underline"
+              >
+                mrpatraofficial@gmail.com
               </a>
             </div>
 
@@ -81,6 +129,7 @@ function App() {
               <a
                 href="https://mrpatra.vercel.app/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:underline"
               >
                 www.mrpatra.vercel.app
@@ -88,6 +137,10 @@ function App() {
             </div>
           </div>
         </div>
+      
+
+      {/* END OF EDITED CODE */}
+    
 
         <button
           onClick={() => window.location.reload()}
