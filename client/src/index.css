@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: rgba(30, 41, 59, 0.7);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.5);
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
   body {
     @apply bg-bg-dark text-text-primary font-sans min-h-screen antialiased bg-midnight-gradient bg-fixed;
   }
