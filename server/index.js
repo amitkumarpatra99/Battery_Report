@@ -6,30 +6,13 @@ const si = require('systeminformation');
 const BatteryLog = require('./models/BatteryLog');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(cors());
-app.use(express.json());
-
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/battery-monitor', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
-
-// Routes
-
-// Get current battery status
-app.get('/api/battery/current', async (req, res) => {
-    try {
-        const battery = await si.battery();
-        res.json(battery);
-    } catch (error) {
-        console.error('Error fetching battery data:', error);
-        res.status(500).json({ error: 'Failed to fetch battery data' });
-    }
+try {
+    const battery = await si.battery();
+    res.json(battery);
+} catch (error) {
+    console.error('Error fetching battery data:', error);
+    res.status(500).json({ error: 'Failed to fetch battery data' });
+}
 });
 
 // Get battery history (last 24 hours by default)
