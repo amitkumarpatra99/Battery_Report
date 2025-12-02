@@ -44,68 +44,74 @@ function App() {
   );
 
   if (error) return (
-    <div className="flex justify-center items-center h-screen p-5">
-      <div className="glass-panel p-8 max-w-md w-full text-center border-danger/50">
-        <div className="text-5xl mb-4">⚠️</div>
-        <h2 className="text-2xl font-bold text-danger mb-2">Connection Failed</h2>
-        <p className="text-text-secondary mb-6">
-          Could not reach the local backend server.
+    <div className="min-h-screen w-full flex justify-center items-center p-5 bg-gradient-to-b from-bg-dark to-black">
+      <div className="w-full max-w-lg glass-panel p-8 rounded-2xl shadow-xl border border-white/10 backdrop-blur-xl">
+
+        {/* Icon */}
+        <div className="text-6xl mb-4 animate-bounce">⚠️</div>
+
+        {/* Heading */}
+        <h2 className="text-3xl font-extrabold text-danger mb-2">
+          Connection Failed
+        </h2>
+
+        <p className="text-text-secondary mb-6 text-base">
+          The app couldn’t reach the local backend server.
         </p>
 
-{/* EDITED */}
-        <div className="text-left bg-black/30 p-5 rounded-xl mb-6 text-sm text-text-secondary backdrop-blur-md border border-white/10 shadow-lg">
-          <p className="font-semibold text-text-primary mb-3 text-base">
-            Troubleshooting & Support
+        {/* TROUBLESHOOTING SECTION */}
+        <div className="text-left bg-black/40 p-5 rounded-xl mb-6 text-sm text-text-secondary border border-white/10 shadow-lg space-y-3">
+
+          <p className="font-semibold text-text-primary text-lg">
+            Troubleshooting Guide
           </p>
 
           <ul className="list-disc pl-5 space-y-2 leading-relaxed">
             <li>
-              Please enable{" "}
+              Enable{" "}
               <span className="font-medium text-text-primary">
-                "Local Network Access"
+                “Local Network Access”
               </span>{" "}
-              to allow battery data scanning.
+              for the website.
             </li>
             <li>
-              We ensure{" "}
-              <span className="font-semibold text-text-primary">zero risk</span> — the app
-              does not harm your system.
+              Make sure your system’s local backend tool is running correctly.
             </li>
             <li>
-              The tool only analyzes your battery data to offer accurate health
-              suggestions.
+              No worries — the app is{" "}
+              <span className="font-semibold text-text-primary">100% safe</span>.
             </li>
           </ul>
 
-          {/* --- NEW SECTION: Local Network Access Guide --- */}
-          <div className="mt-4 p-4 bg-black/20 rounded-lg border border-white/10">
-            <p className="font-semibold text-text-primary mb-2">
+          {/* Local Network Access Guide */}
+          <div className="mt-2 p-4 bg-black/30 rounded-lg border border-white/10">
+            <p className="font-semibold text-text-primary mb-2 text-base">
               How to Enable Local Network Access:
             </p>
             <ol className="list-decimal pl-5 space-y-1 leading-relaxed">
               <li>
                 Click the{" "}
-                <span className="text-text-primary font-medium">🔒 lock icon</span> in
-                your browser’s address bar.
+                <span className="text-text-primary font-medium">🔒 lock icon</span>{" "}
+                next to the website URL.
               </li>
-              <li>Select **Site settings** or **Permissions**.</li>
+              <li>Open <span className="font-medium">Site settings</span>.</li>
               <li>
-                Turn on{" "}
+                Find{" "}
                 <span className="font-medium text-text-primary">
-                  "Local Network Access"
+                  “Local Network Access”
                 </span>{" "}
-                as shown in the image above.
+                and set it to <span className="font-medium">Allow</span>.
               </li>
             </ol>
-            <p className="mt-2 text-text-secondary text-xs">
-              This permission allows the browser to read system-level battery data
-              safely.
+
+            <p className="mt-2 text-xs text-text-secondary/80">
+              This safely allows the browser to scan battery data from your device.
             </p>
           </div>
 
-          {/* --- Contact section --- */}
-          <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
-            <p className="font-semibold text-text-primary">Contact Us:</p>
+          {/* CONTACT SECTION */}
+          <div className="pt-3 border-t border-white/10 space-y-3">
+            <p className="font-semibold text-text-primary text-base">Need Help?</p>
 
             <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
               <FiPhone className="text-accent" />
@@ -137,20 +143,18 @@ function App() {
             </div>
           </div>
         </div>
-      
 
-      {/* END OF EDITED CODE */}
-    
-
+        {/* RETRY BUTTON */}
         <button
           onClick={() => window.location.reload()}
-          className="bg-accent hover:bg-accent-glow text-bg-dark font-bold py-2 px-6 rounded-full transition-all"
+          className="w-full bg-accent hover:bg-accent-glow text-bg-dark font-bold py-3 rounded-full text-lg transition-all mt-2 shadow-lg"
         >
           Retry Connection
         </button>
       </div>
     </div>
   );
+  
 
   return (
     <div className="max-w-[1200px] mx-auto py-10 px-5 min-h-screen flex flex-col">
