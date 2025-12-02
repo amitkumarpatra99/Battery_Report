@@ -6,6 +6,8 @@ const si = require('systeminformation');
 const BatteryLog = require('./models/BatteryLog');
 
 const app = express();
+app.use(cors());
+const PORT = process.env.PORT || 5000;
 // Get current battery status
 app.get('/api/battery/current', async (req, res) => {
     try {
