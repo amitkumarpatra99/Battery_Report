@@ -81,6 +81,22 @@ Windows Battery Status/
 
 
 
+## ⚠️ Deployment Limitations
+
+**Important**: This application is designed to run **locally** on your Windows machine.
+
+- **Why?**: It uses the `systeminformation` Node.js library to read your laptop's physical battery sensors.
+- **Cloud Deployment**: If you deploy the frontend to Vercel/Netlify, it will **fail to fetch data** unless you also have the backend running locally on your machine and allow the browser to access `localhost`.
+- **Best Practice**: Clone and run this project locally for the intended experience.
+
+### 🔓 Enabling Local Network Access (Chrome/Edge)
+If you are running the frontend on a public URL (like Vercel) but the backend is on `localhost`, Chrome may block the connection. To fix this:
+1.  Open the deployed website in Chrome.
+2.  Click the **Lock icon** (🔒) or **Settings icon** in the address bar.
+3.  Click **Site settings**.
+4.  Find **Insecure content** or **Local network access** and set it to **Allow**.
+5.  Reload the page.
+
 ## 🔧 Troubleshooting
 
 - **MongoDB Error**: If you see connection errors, ensure MongoDB is running locally on port `27017`.

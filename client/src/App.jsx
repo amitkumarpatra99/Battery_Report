@@ -41,15 +41,38 @@ function App() {
   );
 
   if (error) return (
-    <div className="flex justify-center items-center h-screen text-danger">
-      <div className="glass-panel p-5">Error: {error}</div>
+    <div className="flex justify-center items-center h-screen p-5">
+      <div className="glass-panel p-8 max-w-md w-full text-center border-danger/50">
+        <div className="text-5xl mb-4">⚠️</div>
+        <h2 className="text-2xl font-bold text-danger mb-2">Connection Failed</h2>
+        <p className="text-text-secondary mb-6">
+          Could not reach the local backend server.
+        </p>
+
+        <div className="text-left bg-black/30 p-4 rounded-lg mb-6 text-sm text-text-secondary">
+          <p className="font-semibold text-text-primary mb-2">Troubleshooting:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Ensure the backend is running locally (`npm start`).</li>
+            <li>Check if MongoDB is active.</li>
+            <li>If on Vercel/Netlify, this app <strong>requires</strong> a local backend to read battery data.</li>
+            <li>Allow "Local Network Access" if prompted.</li>
+          </ul>
+        </div>
+
+        <button
+          onClick={() => window.location.reload()}
+          className="bg-accent hover:bg-accent-glow text-bg-dark font-bold py-2 px-6 rounded-full transition-all"
+        >
+          Retry Connection
+        </button>
+      </div>
     </div>
   );
 
   return (
     <div className="max-w-[1200px] mx-auto py-10 px-5">
       <header className="mb-10 text-center">
-        <h1 className="glow-text text-4xl m-0 md:text-5xl font-bold">System Energy Monitor</h1>
+        <h1 className="glow-text text-4xl m-0 md:text-5xl font-bold">Windows Battery Status </h1>
         <p className="text-text-secondary mt-2">Real-time Windows Battery Telemetry</p>
       </header>
 
@@ -85,7 +108,6 @@ function App() {
               icon="⚡"
             />
           </div>
-
           {/* Health Stats */}
           <div className="glass-panel p-6 flex flex-col justify-around col-span-1">
             <h3 className="m-0 mb-5 text-text-secondary font-medium">Battery Health</h3>
@@ -102,6 +124,36 @@ function App() {
               Health: {Math.round((battery.maxCapacity / battery.designedCapacity) * 100)}%
             </div>
           </div>
+
+          {/* Battery Insights */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-3">
+            <div className="glass-panel p-6">
+              <h3 className="m-0 mb-4 text-text-secondary font-medium">Battery Insights</h3>
+              <div className="flex items-start gap-4">
+                <div className="text-3xl bg-white/5 p-3 rounded-xl">
+                  {battery.isCharging ? '⚡' : battery.percent < 20 ? '⚠️' : '💡'}
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-text-primary mb-1">
+                    {battery.isCharging
+                      ? 'Charging in Progress'
+                      : battery.percent < 20
+                        ? 'Low Battery Warning'
+                        : 'Battery Status Normal'}
+                  </h4>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {battery.isCharging
+                      ? 'Your device is currently plugged in. For optimal battery health, consider unplugging once it reaches 80% unless you are performing intensive tasks.'
+                      : battery.percent < 20
+                        ? 'Your battery level is critical. Please plug in your charger immediately to prevent data loss or shutdown.'
+                        : 'Your battery is operating within normal parameters. To extend lifespan, try to keep the charge between 20% and 80%.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           {/* Chart */}
           <div className="col-span-1 md:col-span-2 lg:col-span-3">
