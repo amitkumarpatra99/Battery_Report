@@ -55,15 +55,15 @@ function App() {
       </header>
 
       {battery && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div className="dashboard-grid">
 
           {/* Main Gauge */}
-          <div style={{ gridColumn: 'span 1' }}>
+          <div className="gauge-container">
             <BatteryGauge percent={battery.percent} isCharging={battery.isCharging} />
           </div>
 
           {/* Stats Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          <div className="stats-grid">
             <StatCard
               label="Status"
               value={battery.isCharging ? 'Charging' : 'Discharging'}
