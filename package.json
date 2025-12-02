@@ -1,21 +1,14 @@
 {
   "name": "windows-battery-status",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "MERN stack app for Windows battery status",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm start",
+    "client": "cd client && npm run dev",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/amitkumarpatra99/Battery_Report.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/amitkumarpatra99/Battery_Report/issues"
-  },
-  "homepage": "https://github.com/amitkumarpatra99/Battery_Report#readme"
+  "dependencies": {
+    "concurrently": "^9.1.0"
+  }
 }

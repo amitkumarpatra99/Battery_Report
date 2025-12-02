@@ -6,13 +6,15 @@ const si = require('systeminformation');
 const BatteryLog = require('./models/BatteryLog');
 
 const app = express();
-try {
-    const battery = await si.battery();
-    res.json(battery);
-} catch (error) {
-    console.error('Error fetching battery data:', error);
-    res.status(500).json({ error: 'Failed to fetch battery data' });
-}
+// Get current battery status
+app.get('/api/battery/current', async (req, res) => {
+    try {
+        const battery = await si.battery();
+        res.json(battery);
+    } catch (error) {
+        console.error('Error fetching battery data:', error);
+        res.status(500).json({ error: 'Failed to fetch battery data' });
+    }
 });
 
 // Get battery history (last 24 hours by default)
