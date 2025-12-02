@@ -4,7 +4,6 @@ import HealthChart from './components/HealthChart';
 import Footer from './components/Footer';
 import { FiPhone, FiMail, FiGlobe } from "react-icons/fi";
 
-
 function App() {
   const [battery, setBattery] = useState(null);
   const [history, setHistory] = useState([]);
@@ -43,30 +42,42 @@ function App() {
     </div>
   );
 
+  // =========================
+  //  ERROR – NEW CARD LAYOUT
+  // =========================
   if (error) return (
     <div className="min-h-screen w-full flex justify-center items-center p-5 bg-gradient-to-b from-bg-dark to-black">
-      <div className="w-full max-w-lg glass-panel p-8 rounded-2xl shadow-xl border border-white/10 backdrop-blur-xl">
+      <div className="w-full max-w-3xl glass-panel p-6 rounded-2xl shadow-xl border border-white/10 backdrop-blur-xl flex flex-col lg:flex-row gap-6">
 
-        {/* Icon */}
-        <div className="text-6xl mb-4 animate-bounce">⚠️</div>
+        {/* LEFT — ICON + TITLE */}
+        <div className="flex flex-col justify-center items-center lg:w-1/3 text-center lg:text-left">
+          <div className="text-6xl mb-3 animate-bounce">⚠️</div>
+          <h2 className="text-3xl font-extrabold text-danger mb-2">Connection Failed</h2>
+          <p className="text-text-secondary text-base">
+            The app couldn’t reach your local backend server.
+          </p>
 
-        {/* Heading */}
-        <h2 className="text-3xl font-extrabold text-danger mb-2">
-          Connection Failed
-        </h2>
+          {/* Retry Button */}
+          <button
+            onClick={() => {
+              window.open(
+                "chrome://settings/content/siteDetails?site=https://batteryhelth.vercel.app",
+                "_blank"
+              );
+            }}
+            className="w-full bg-accent hover:bg-accent-glow text-bg-dark font-bold py-3 px-6 rounded-full text-lg transition-all mt-5 shadow-lg"
+          >
+            Retry Connection
+          </button>
+        </div>
 
-        <p className="text-text-secondary mb-6 text-base">
-          The app couldn’t reach the local backend server.
-        </p>
-
-        {/* TROUBLESHOOTING SECTION */}
-        <div className="text-left bg-black/40 p-5 rounded-xl mb-6 text-sm text-text-secondary border border-white/10 shadow-lg space-y-3">
-
-          <p className="font-semibold text-text-primary text-lg">
+        {/* RIGHT — TROUBLESHOOTING */}
+        <div className="lg:w-2/3 bg-black/40 p-5 rounded-xl border border-white/10 shadow-lg">
+          <p className="font-semibold text-text-primary text-xl mb-3">
             Troubleshooting Guide
           </p>
 
-          <ul className="list-disc pl-5 space-y-2 leading-relaxed">
+          <ul className="list-disc pl-5 space-y-2 leading-relaxed text-sm">
             <li>
               Enable{" "}
               <span className="font-medium text-text-primary">
@@ -74,111 +85,97 @@ function App() {
               </span>{" "}
               for the website.
             </li>
+            <li>Ensure your Windows Battery Backend Tool is running.</li>
             <li>
-              Make sure your system’s local backend tool is running correctly.
-            </li>
-            <li>
-              No worries — the app is{" "}
-              <span className="font-semibold text-text-primary">100% safe</span>.
+              The app is <span className="font-semibold text-text-primary">100% safe</span>.
             </li>
           </ul>
 
-          {/* Local Network Access Guide */}
-          <div className="mt-2 p-4 bg-black/30 rounded-lg border border-white/10">
+          {/* STEPS BOX */}
+          <div className="mt-4 p-4 bg-black/30 rounded-lg border border-white/10">
             <p className="font-semibold text-text-primary mb-2 text-base">
               How to Enable Local Network Access:
             </p>
-            <ol className="list-decimal pl-5 space-y-1 leading-relaxed">
+            <ol className="list-decimal pl-5 space-y-1 leading-relaxed text-sm">
               <li>
                 Click the{" "}
-                <span className="text-text-primary font-medium">🔒 lock icon</span>{" "}
-                next to the website URL.
+                <span className="text-text-primary font-medium">🔒 lock icon</span> beside the website URL.
               </li>
-              <li>Open <span className="font-medium">Site settings</span>.</li>
+              <li>Click <span className="font-medium">Site Settings</span>.</li>
               <li>
-                Find{" "}
+                Turn ON{" "}
                 <span className="font-medium text-text-primary">
                   “Local Network Access”
-                </span>{" "}
-                and set it to <span className="font-medium">Allow</span>.
+                </span>.
               </li>
             </ol>
 
             <p className="mt-2 text-xs text-text-secondary/80">
-              This safely allows the browser to scan battery data from your device.
+              This enables Chrome to access your local system battery data safely.
             </p>
           </div>
 
           {/* CONTACT SECTION */}
-          <div className="pt-3 border-t border-white/10 space-y-3">
+          <div className="pt-4 mt-3 border-t border-white/10 space-y-2">
             <p className="font-semibold text-text-primary text-base">Need Help?</p>
 
-            <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
-              <FiPhone className="text-accent" />
-              <a href="tel:8144129955" className="hover:underline">
-                +91 81441 29955
-              </a>
+            <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition text-sm">
+              <FiPhone className="text-accent" /> +91 81441 29955
             </div>
 
-            <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
-              <FiMail className="text-accent" />
-              <a
-                href="mailto:mrpatraofficial@gmail.com"
-                className="hover:underline"
-              >
-                mrpatraofficial@gmail.com
-              </a>
+            <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition text-sm">
+              <FiMail className="text-accent" /> mrpatraofficial@gmail.com
             </div>
 
-            <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition">
+            <div className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition text-sm">
               <FiGlobe className="text-accent" />
               <a
                 href="https://mrpatra.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline"
               >
                 www.mrpatra.vercel.app
               </a>
             </div>
           </div>
-        </div>
 
-        {/* RETRY BUTTON */}
-        <button
-          onClick={() => window.location.reload()}
-          className="w-full bg-accent hover:bg-accent-glow text-bg-dark font-bold py-3 rounded-full text-lg transition-all mt-2 shadow-lg"
-        >
-          Retry Connection
-        </button>
+        </div>
       </div>
     </div>
   );
-  
 
+  // =========================
+  //      MAIN DASHBOARD
+  // =========================
   return (
     <div className="max-w-[1200px] mx-auto py-10 px-5 min-h-screen flex flex-col">
       <header className="mb-10 text-center">
-        <h1 className="glow-text text-4xl m-0 md:text-5xl font-bold">Windows Battery Status </h1>
-        <p className="text-text-secondary mt-2">Real-time Windows Battery Telemetry</p>
+        <h1 className="glow-text text-4xl m-0 md:text-5xl font-bold">
+          Windows Battery Status
+        </h1>
+        <p className="text-text-secondary mt-2">
+          Real-time Windows Battery Telemetry
+        </p>
       </header>
 
       <div className="flex-grow">
         {battery && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {/* Main Gauge */}
+            {/* Battery Gauge */}
             <div className="col-span-1">
-              <BatteryGauge percent={battery.percent} isCharging={battery.isCharging} />
+              <BatteryGauge
+                percent={battery.percent}
+                isCharging={battery.isCharging}
+              />
             </div>
 
-            {/* Stats Grid */}
+            {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 col-span-1 lg:col-span-1">
               <StatCard
                 label="Status"
                 value={battery.isCharging ? 'Charging' : 'Discharging'}
                 icon={battery.isCharging ? '⚡' : '🔋'}
-                color={battery.isCharging ? 'text-warning' : 'text-text-primary'}
               />
               <StatCard
                 label="Power Source"
@@ -197,13 +194,14 @@ function App() {
               />
             </div>
 
-            {/* Health Stats */}
-            <div className="glass-panel p-6 flex flex-col justify-around col-span-1">
-              <h3 className="m-0 mb-5 text-text-secondary font-medium">Battery Health</h3>
+            {/* Health Section */}
+            <div className="glass-panel p-6 col-span-1">
+              <h3 className="mb-4 text-text-secondary font-medium">Battery Health</h3>
               <HealthRow label="Designed Capacity" value={`${battery.designedCapacity} mWh`} />
               <HealthRow label="Max Capacity" value={`${battery.maxCapacity} mWh`} />
               <HealthRow label="Cycle Count" value={battery.cycleCount} />
-              <div className="mt-5 h-1 bg-white/10 rounded-full overflow-hidden">
+
+              <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-accent shadow-[0_0_10px_var(--accent-color)]"
                   style={{ width: `${(battery.maxCapacity / battery.designedCapacity) * 100}%` }}
@@ -214,10 +212,10 @@ function App() {
               </div>
             </div>
 
-            {/* Battery Insights */}
+            {/* Insights */}
             <div className="col-span-1 md:col-span-2 lg:col-span-3">
               <div className="glass-panel p-6">
-                <h3 className="m-0 mb-4 text-text-secondary font-medium">Battery Insights</h3>
+                <h3 className="mb-4 text-text-secondary font-medium">Battery Insights</h3>
                 <div className="flex items-start gap-4">
                   <div className="text-3xl bg-white/5 p-3 rounded-xl">
                     {battery.isCharging ? '⚡' : battery.percent < 20 ? '⚠️' : '💡'}
@@ -232,10 +230,10 @@ function App() {
                     </h4>
                     <p className="text-text-secondary text-sm leading-relaxed">
                       {battery.isCharging
-                        ? 'Your device is currently plugged in. For optimal battery health, consider unplugging once it reaches 80% unless you are performing intensive tasks.'
+                        ? 'Your device is charging. For better battery health, unplug at 80%.'
                         : battery.percent < 20
-                          ? 'Your battery level is critical. Please plug in your charger immediately to prevent data loss or shutdown.'
-                          : 'Your battery is operating within normal parameters. To extend lifespan, try to keep the charge between 20% and 80%.'}
+                          ? 'Battery critically low. Please plug in your charger.'
+                          : 'Battery health is stable. Keep it between 20–80% for longer lifespan.'}
                     </p>
                   </div>
                 </div>
@@ -256,11 +254,11 @@ function App() {
   );
 }
 
-const StatCard = ({ label, value, icon, color }) => (
-  <div className="glass-panel p-5 flex flex-col justify-center">
+const StatCard = ({ label, value, icon }) => (
+  <div className="glass-panel p-5">
     <div className="text-2xl mb-2">{icon}</div>
     <div className="text-text-secondary text-sm">{label}</div>
-    <div className={`text-xl font-semibold ${color || 'text-text-primary'}`}>{value}</div>
+    <div className="text-xl font-semibold text-text-primary">{value}</div>
   </div>
 );
 
