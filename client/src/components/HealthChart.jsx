@@ -3,7 +3,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const HealthChart = ({ data }) => {
     if (!data || data.length === 0) return (
-        <div className="glass-panel" style={{ padding: '20px', textAlign: 'center', color: 'var(--text-secondary)' }}>
+        <div className="glass-panel p-5 text-center text-text-secondary">
             No history data available
         </div>
     );
@@ -14,44 +14,44 @@ const HealthChart = ({ data }) => {
     })).reverse();
 
     return (
-        <div className="glass-panel" style={{ padding: '20px', height: '400px' }}>
-            <h3 style={{ margin: '0 0 20px 0', color: 'var(--text-secondary)', fontWeight: 500 }}>Battery History</h3>
+        <div className="glass-panel p-5 h-[400px]">
+            <h3 className="m-0 mb-5 text-text-secondary font-medium">Battery History</h3>
             <ResponsiveContainer width="100%" height="85%">
                 <AreaChart data={formattedData}>
                     <defs>
                         <linearGradient id="colorPercent" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="var(--accent-color)" stopOpacity={0.8} />
-                            <stop offset="95%" stopColor="var(--accent-color)" stopOpacity={0} />
+                            <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.8} />
+                            <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
                         </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="var(--glass-border)" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
                     <XAxis
                         dataKey="time"
-                        stroke="var(--text-secondary)"
-                        tick={{ fill: 'var(--text-secondary)' }}
+                        stroke="#94a3b8"
+                        tick={{ fill: '#94a3b8' }}
                         tickLine={false}
                         axisLine={false}
                     />
                     <YAxis
                         domain={[0, 100]}
-                        stroke="var(--text-secondary)"
-                        tick={{ fill: 'var(--text-secondary)' }}
+                        stroke="#94a3b8"
+                        tick={{ fill: '#94a3b8' }}
                         tickLine={false}
                         axisLine={false}
                     />
                     <Tooltip
                         contentStyle={{
-                            backgroundColor: 'var(--bg-dark)',
-                            borderColor: 'var(--glass-border)',
+                            backgroundColor: '#0f172a',
+                            borderColor: 'rgba(255,255,255,0.1)',
                             borderRadius: '8px',
-                            color: 'var(--text-primary)'
+                            color: '#f8fafc'
                         }}
-                        itemStyle={{ color: 'var(--accent-color)' }}
+                        itemStyle={{ color: '#38bdf8' }}
                     />
                     <Area
                         type="monotone"
                         dataKey="percent"
-                        stroke="var(--accent-color)"
+                        stroke="#38bdf8"
                         fillOpacity={1}
                         fill="url(#colorPercent)"
                     />

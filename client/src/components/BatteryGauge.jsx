@@ -8,7 +8,7 @@ const BatteryGauge = ({ percent, isCharging }) => {
     const strokeDashoffset = circumference - (percent / 100) * circumference;
 
     const getColor = (p) => {
-        if (p > 50) return 'var(--success)';
+        if (p > 50) return 'var(--success)'; // Tailwind config maps these, but dynamic colors in JS might need inline styles or class mapping
         if (p > 20) return 'var(--warning)';
         return 'var(--danger)';
     };
@@ -16,19 +16,12 @@ const BatteryGauge = ({ percent, isCharging }) => {
     const color = getColor(percent);
 
     return (
-        <div className="glass-panel" style={{
-            padding: '40px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative'
-        }}>
-            <h3 style={{ margin: '0 0 20px 0', color: 'var(--text-secondary)', fontWeight: 500 }}>Current Charge</h3>
-            <div style={{ position: 'relative', width: '100%', maxWidth: '200px', aspectRatio: '1/1' }}>
+        <div className="glass-panel p-10 flex flex-col items-center justify-center relative">
+            <h3 className="m-0 mb-5 text-text-secondary font-medium">Current Charge</h3>
+            <div className="relative w-full max-w-[200px] aspect-square">
                 <svg
                     viewBox={`0 0 ${radius * 2} ${radius * 2}`}
-                    style={{ transform: 'rotate(-90deg)', overflow: 'visible', width: '100%', height: '100%' }}
+                    className="transform -rotate-90 overflow-visible w-full h-full"
                 >
                     <circle
                         stroke="rgba(255,255,255,0.1)"
@@ -54,35 +47,17 @@ const BatteryGauge = ({ percent, isCharging }) => {
                         cy={radius}
                     />
                 </svg>
-                <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    textAlign: 'center'
-                }}>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                    <div className="text-4xl font-bold text-text-primary">
                         {percent}%
                     </div>
                     {isCharging && (
-                        <div style={{
-                            color: 'var(--warning)',
-                            fontSize: '1.5rem',
-                            marginTop: '5px',
-                            animation: 'pulse 2s infinite'
-                        }}>
+                        <div className="text-warning text-2xl mt-1 animate-pulse">
                             ⚡ Charging
                         </div>
                     )}
                 </div>
             </div>
-            <style>{`
-        @keyframes pulse {
-          0% { opacity: 1; }
-          50% { opacity: 0.5; }
-          100% { opacity: 1; }
-        }
-      `}</style>
         </div>
     );
 };

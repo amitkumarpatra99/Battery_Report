@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BatteryGauge from './components/BatteryGauge';
 import HealthChart from './components/HealthChart';
-import './App.css';
 
 function App() {
   const [battery, setBattery] = useState(null);
@@ -36,39 +35,39 @@ function App() {
   }, []);
 
   if (loading) return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'var(--text-primary)' }}>
+    <div className="flex justify-center items-center h-screen text-text-primary">
       <div className="glow-text">Loading System Data...</div>
     </div>
   );
 
   if (error) return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'var(--danger)' }}>
-      <div className="glass-panel" style={{ padding: '20px' }}>Error: {error}</div>
+    <div className="flex justify-center items-center h-screen text-danger">
+      <div className="glass-panel p-5">Error: {error}</div>
     </div>
   );
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
-      <header style={{ marginBottom: '40px', textAlign: 'center' }}>
-        <h1 className="glow-text" style={{ fontSize: '2.5rem', margin: 0 }}>System Energy Monitor</h1>
-        <p style={{ color: 'var(--text-secondary)', marginTop: '10px' }}>Real-time Windows Battery Telemetry</p>
+    <div className="max-w-[1200px] mx-auto py-10 px-5">
+      <header className="mb-10 text-center">
+        <h1 className="glow-text text-4xl m-0 md:text-5xl font-bold">System Energy Monitor</h1>
+        <p className="text-text-secondary mt-2">Real-time Windows Battery Telemetry</p>
       </header>
 
       {battery && (
-        <div className="dashboard-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {/* Main Gauge */}
-          <div className="gauge-container">
+          <div className="col-span-1">
             <BatteryGauge percent={battery.percent} isCharging={battery.isCharging} />
           </div>
 
           {/* Stats Grid */}
-          <div className="stats-grid">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 col-span-1 lg:col-span-1">
             <StatCard
               label="Status"
               value={battery.isCharging ? 'Charging' : 'Discharging'}
               icon={battery.isCharging ? '⚡' : '🔋'}
-              color={battery.isCharging ? 'var(--warning)' : 'var(--text-primary)'}
+              color={battery.isCharging ? 'text-warning' : 'text-text-primary'}
             />
             <StatCard
               label="Power Source"
@@ -88,26 +87,24 @@ function App() {
           </div>
 
           {/* Health Stats */}
-          <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-            <h3 style={{ margin: '0 0 20px 0', color: 'var(--text-secondary)', fontWeight: 500 }}>Battery Health</h3>
+          <div className="glass-panel p-6 flex flex-col justify-around col-span-1">
+            <h3 className="m-0 mb-5 text-text-secondary font-medium">Battery Health</h3>
             <HealthRow label="Designed Capacity" value={`${battery.designedCapacity} mWh`} />
             <HealthRow label="Max Capacity" value={`${battery.maxCapacity} mWh`} />
             <HealthRow label="Cycle Count" value={battery.cycleCount} />
-            <div style={{ marginTop: '20px', height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden' }}>
-              <div style={{
-                width: `${(battery.maxCapacity / battery.designedCapacity) * 100}%`,
-                height: '100%',
-                background: 'var(--accent-color)',
-                boxShadow: '0 0 10px var(--accent-color)'
-              }} />
+            <div className="mt-5 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-accent shadow-[0_0_10px_var(--accent-color)]"
+                style={{ width: `${(battery.maxCapacity / battery.designedCapacity) * 100}%` }}
+              />
             </div>
-            <div style={{ textAlign: 'right', marginTop: '5px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+            <div className="text-right mt-1 text-sm text-text-secondary">
               Health: {Math.round((battery.maxCapacity / battery.designedCapacity) * 100)}%
             </div>
           </div>
 
           {/* Chart */}
-          <div style={{ gridColumn: '1 / -1' }}>
+          <div className="col-span-1 md:col-span-2 lg:col-span-3">
             <HealthChart data={history} />
           </div>
 
@@ -118,17 +115,17 @@ function App() {
 }
 
 const StatCard = ({ label, value, icon, color }) => (
-  <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-    <div style={{ fontSize: '1.5rem', marginBottom: '10px' }}>{icon}</div>
-    <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{label}</div>
-    <div style={{ fontSize: '1.2rem', fontWeight: 600, color: color || 'var(--text-primary)' }}>{value}</div>
+  <div className="glass-panel p-5 flex flex-col justify-center">
+    <div className="text-2xl mb-2">{icon}</div>
+    <div className="text-text-secondary text-sm">{label}</div>
+    <div className={`text-xl font-semibold ${color || 'text-text-primary'}`}>{value}</div>
   </div>
 );
 
 const HealthRow = ({ label, value }) => (
-  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
-    <span style={{ color: 'var(--text-secondary)' }}>{label}</span>
-    <span style={{ fontWeight: 500 }}>{value}</span>
+  <div className="flex justify-between mb-3 border-b border-white/5 pb-2">
+    <span className="text-text-secondary">{label}</span>
+    <span className="font-medium">{value}</span>
   </div>
 );
 
