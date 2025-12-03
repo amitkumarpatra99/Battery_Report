@@ -13,12 +13,12 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const currentRes = await fetch('http://localhost:5000/api/battery/current');
+      const currentRes = await fetch('http://127.0.0.1:5000/api/battery/current');
       if (!currentRes.ok) throw new Error('Failed to fetch battery status');
       const currentData = await currentRes.json();
       setBattery(currentData);
 
-      const historyRes = await fetch('http://localhost:5000/api/battery/history');
+      const historyRes = await fetch('http://127.0.0.1:5000/api/battery/history');
       if (historyRes.ok) {
         const historyData = await historyRes.json();
         setHistory(historyData);
