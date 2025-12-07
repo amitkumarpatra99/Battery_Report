@@ -6,17 +6,17 @@ const si = require('systeminformation');
 const BatteryLog = require('./models/BatteryLog');
 
 const app = express();
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Private-Network", "true");
+    next();
+});
+
 app.use(cors({
     origin: ['http://localhost:5173', 'https://batteryhelth.vercel.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Private-Network", "true");
-    next();
-});
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/battery_status')

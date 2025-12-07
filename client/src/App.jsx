@@ -13,6 +13,7 @@ function App() {
 
   const fetchData = async () => {
     const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    console.log('Fetching from:', API_BASE_URL);
     try {
       const currentRes = await fetch(`${API_BASE_URL}/api/battery/current`);
       if (!currentRes.ok) throw new Error('Failed to fetch battery status');
